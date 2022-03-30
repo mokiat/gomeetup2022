@@ -1,0 +1,14 @@
+# Bonus slides
+
+## Generic constraints
+
+.play snippets/bonus_generic_constraint.go.txt /START OMIT/,/END OMIT/
+
+
+## Infer from partial information
+
+.play snippets/bonus_infer_from_partial.go.txt /START OMIT/,/END OMIT/
+
+## Assembly code
+
+> Live demo

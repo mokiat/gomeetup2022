@@ -1,0 +1,27 @@
+package main
+
+import "fmt"
+
+// START1 OMIT
+
+type Numeric interface {
+	~int | ~int32 | ~float32 | ~float64
+}
+
+// END1 OMIT
+
+// START2 OMIT
+
+func min[T Numeric](a, b T) T {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func main() {
+	fmt.Println(min(32, 15))
+	fmt.Println(min(1.5, 4.3))
+}
+
+// END2 OMIT

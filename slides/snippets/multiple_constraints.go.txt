@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+func Has[K comparable, V any](m map[K]V, k K) bool { // HL
+	_, ok := m[k]
+	return ok
+}
+
+func main() {
+	mapping := map[string]float32{
+		"first":  1,
+		"second": 2,
+		"third":  3,
+	}
+
+	fmt.Printf("%s -> %t\n", "first", Has(mapping, "first"))
+	fmt.Printf("%s -> %t\n", "missing", Has(mapping, "missing"))
+	fmt.Printf("%s -> %t\n", "third", Has(mapping, "third"))
+}
+
+// END OMIT

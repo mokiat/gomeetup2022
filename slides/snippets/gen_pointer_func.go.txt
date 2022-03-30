@@ -1,0 +1,23 @@
+package snippets
+
+// START1 OMIT
+
+func stringPtr(value string) *string {
+	return &value
+}
+
+// END1 OMIT
+// START2 OMIT
+
+func somethingPtr(value T) *T {
+	return &value
+}
+
+// END2 OMIT
+// START3 OMIT
+
+func ptrOf[T any](value T) *T {
+	return &value
+}
+
+// END3 OMIT

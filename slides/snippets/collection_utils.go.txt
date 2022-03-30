@@ -1,0 +1,20 @@
+package snippets
+
+// START OMIT
+
+type StringSlice []string
+
+func (s StringSlice) Contains(value string) bool {
+	return s.IndexOf(value) >= 0
+}
+
+func (s StringSlice) IndexOf(value string) int {
+	for i, str := range s {
+		if str == value {
+			return i
+		}
+	}
+	return -1
+}
+
+// END OMIT

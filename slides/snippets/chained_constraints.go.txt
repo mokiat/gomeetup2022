@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+func IndexOf[S []T, T comparable](slice S, value T) int { // HL
+	for i, v := range slice {
+		if v == value {
+			return i
+		}
+	}
+	return -1
+}
+
+func main() {
+	ints := []int{5, 13, 25, 119}
+
+	fmt.Printf("%d -> %d\n", 5, IndexOf(ints, 5))
+	fmt.Printf("%d -> %d\n", 55, IndexOf(ints, 55))
+	fmt.Printf("%d -> %d\n", 25, IndexOf(ints, 25))
+}
+
+// END OMIT

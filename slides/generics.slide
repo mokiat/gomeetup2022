@@ -1,0 +1,222 @@
+# Generics
+a.k.a. parametric polymorphism / type parameters
+
+Momchil Atanasov
+Software Developer, Chaos
+https://github.com/mokiat
+https://linkedin.com/in/mokiat
+https://medium.com/@mokiat
+
+## Why
+
+<br>
+
+> "In programming languages and type theory, parametric polymorphism is a way to make a language more expressive, while still maintaining full static type-safety."
+
+.caption source: [[https://en.wikipedia.org/wiki/Parametric_polymorphism][Wikipedia]]
+
+<br><br>
+
+> ...or let's look at some practical examples...
+
+## The pointer problem
+
+.play snippets/const_pointer.go.txt /START OMIT/,/END OMIT/
+
+## The pointer problem: temp variables
+
+.play snippets/const_pointer_var.go.txt /START OMIT/,/END OMIT/
+
+## The pointer problem: helper functions
+
+.play snippets/const_pointer_func.go.txt /START OMIT/,/END OMIT/
+
+## The math utilities problem
+
+.code snippets/math_utils.go.txt /START OMIT/,/END OMIT/
+
+## The collections problem
+
+.code snippets/collection_utils.go.txt /START OMIT/,/END OMIT/
+
+## The data structures/algorithms problem
+
+- [sync.Map](https://pkg.go.dev/sync#Map)
+- [sync.Pool](https://pkg.go.dev/sync#Pool)
+- [heap.Interface](https://pkg.go.dev/container/heap#Interface)
+- [sort.Interface](https://pkg.go.dev/sort#Interface)
+    - [sort.Strings](https://pkg.go.dev/sort#Strings) _("workaround")_
+    - [sort.Slice](https://pkg.go.dev/sort#Slice) _("workaround")_
+
+## How & How Not To
+
+<br><br>
+
+> ...let's tackle the problems we've seen so far...
+
+## A trivial generic function
+
+.code snippets/gen_pointer_func.go.txt /START1 OMIT/,/END1 OMIT/
+
+> _...into..._
+
+.code snippets/gen_pointer_func.go.txt /START2 OMIT/,/END2 OMIT/
+
+> _...into..._
+
+.code snippets/gen_pointer_func.go.txt /START3 OMIT/,/END3 OMIT/
+
+## Calling the generic function
+
+.play snippets/gen_pointer_func_call.go.txt /START OMIT/,/END OMIT/
+
+## Type inference
+
+.play snippets/type_inference.go.txt /START OMIT/,/END OMIT/
+
+## Non-inferable situations
+
+.play -numbers -edit snippets/non_inferable.go.txt /START OMIT/,/END OMIT/
+
+## Zero value
+
+.code snippets/zero_value.go.txt /START2 OMIT/,/END2 OMIT/
+
+> ...or...
+
+.code snippets/zero_value.go.txt /START1 OMIT/,/END1 OMIT/
+
+## Comparing numbers
+
+.play snippets/comparing_any.go.txt /START OMIT/,/END OMIT/
+
+## Comparing numbers: fixed
+
+.play snippets/comparing_numbers.go.txt /START OMIT/,/END OMIT/
+
+## Handling derived types
+
+.play -numbers -edit snippets/derived_types.go.txt /START OMIT/,/END OMIT/
+
+## Type constraint interfaces
+
+.code snippets/constraint_interfaces.go.txt /START1 OMIT/,/END1 OMIT/
+
+.play snippets/constraint_interfaces.go.txt /START2 OMIT/,/END2 OMIT/
+
+## Predefined constraints
+
+.play snippets/predefined_constraints.go.txt /START OMIT/,/END OMIT/
+
+- [golang.org/x/exp/constraints](https://pkg.go.dev/golang.org/x/exp/constraints)
+
+## Instantiation
+
+.play snippets/instantiation.go.txt /START OMIT/,/END OMIT/
+
+* No such thing as `List<?>` which can be seen in Java
+
+## Standard interface constraints
+
+.play -numbers -edit snippets/interface_constraints.go.txt /START OMIT/,/END OMIT/
+
+- Be careful not to overuse generics!
+
+## Complex constraints
+
+.play snippets/complex_constraints.go.txt /START OMIT/,/END OMIT/
+
+## The comparable constraint
+
+.play -numbers -edit snippets/comparable_constraint.go.txt /START OMIT/,/END OMIT/
+
+## Multiple constraints
+
+.play snippets/multiple_constraints.go.txt /START OMIT/,/END OMIT/
+
+## Chained constraints
+
+.play -numbers -edit snippets/chained_constraints.go.txt /START OMIT/,/END OMIT/
+
+## Generic types
+
+.play -numbers -edit snippets/gen_types.go.txt /START OMIT/,/END OMIT/
+
+## Generic methods
+
+.play -numbers -edit snippets/gen_methods.go.txt /START OMIT/,/END OMIT/
+
+## Generic interfaces
+
+.play snippets/gen_interfaces.go.txt /START OMIT/,/END OMIT/
+
+## The slices and maps packages
+
+.play -numbers -edit snippets/slices_package.go.txt /START OMIT/,/END OMIT/
+
+- [golang.org/x/exp/slices](https://pkg.go.dev/golang.org/x/exp/slices)
+- [golang.org/x/exp/maps](https://pkg.go.dev/golang.org/x/exp/maps)
+
+## Inner Workings
+
+<br>
+
+- [Type erasure](https://docs.oracle.com/javase/tutorial/java/generics/erasure.html)
+    - Used by Java
+- [Monomorphization](https://doc.rust-lang.org/book/ch10-01-syntax.html#performance-of-code-using-generics)
+    - Used by Rust
+- [Dictionaries and Gcshape Stenciling](https://github.com/golang/proposal/blob/master/design/generics-implementation-dictionaries-go1.18.md)
+    - Used in Go
+    - Potential performance implications
+        - [Generics can make your Go code slower](https://planetscale.com/blog/generics-can-make-your-go-code-slower)
+
+## The story of the shared fields
+
+.play snippets/shared_fields.go.txt /START OMIT/,/END OMIT/
+
+## The story of the parameterized method
+
+.play snippets/parameterized_method.go.txt /START OMIT/,/END OMIT/
+
+## Parameterized method workaround ... kind of
+
+.play snippets/parameterized_method_workaround.go.txt /START OMIT/,/END OMIT/
+
+## The impossible generic sub-type
+
+.play snippets/gen_disallowed_subtype.go.txt /START OMIT/,/END OMIT/
+
+* [go/issues/45639](https://github.com/golang/go/issues/45639)
+
+## The case of the missing generic type switch
+
+.play -numbers -edit snippets/gen_type_switch.go.txt /START OMIT/,/END OMIT/
+
+## Recursive instantiations
+
+.play snippets/instantiation_cycle_simple.go.txt /START OMIT/,/END OMIT/
+
+## Recursive instantiations through functions
+
+.play snippets/instantiation_cycle.go.txt /START OMIT/,/END OMIT/
+
+* As discussed in [go/issues/48018](https://github.com/golang/go/issues/48018)
+
+## Beware the Type Parameters Proposal
+
+<br>
+
+Be careful when reading the [Type Parameters Proposal](https://go.googlesource.com/proposal/+/refs/heads/master/design/43651-type-parameters.md).
+- Some of the features are not implemented
+- Some scenarios behave differently
+
+## Thoughts on generics
+
+* Former ideas
+    * The `<T>` approach (``)
+        ```
+        a, b := c < d, e > (f)
+        ```
+    * The `(T)` approach
+* Don't use when interfaces suffice
+* Won't replace `interface{}` (`any`)

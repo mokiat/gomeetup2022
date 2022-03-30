@@ -1,0 +1,26 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+func stringPtr(value string) *string { // HL
+	return &value // HL
+} // HL
+
+func intPtr(value int) *int { // HL
+	return &value // HL
+} // HL
+
+func main() {
+	data := struct {
+		Name *string
+		Age  *int
+	}{
+		Name: stringPtr("John Doe"), // HL
+		Age:  intPtr(32),            // HL
+	}
+	fmt.Printf("%+v\n", data)
+}
+
+// END OMIT

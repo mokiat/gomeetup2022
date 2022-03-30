@@ -1,0 +1,23 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+type Volume int
+
+func min[T int | int32 | float32 | float64](a, b T) T {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func main() {
+	v1 := Volume(50)
+	v2 := Volume(6)
+	result := min(v1, v2)
+	fmt.Printf("%d (%T)\n", result, result)
+}
+
+// END OMIT

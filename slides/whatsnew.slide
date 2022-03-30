@@ -1,0 +1,90 @@
+# What's new in Go
+A brief look at versions 1.14 - 1.18
+
+## Go 1.14
+
+- Module support in the _go_ command ready for production use
+- Allows composition of interfaces with overlapping methods
+- Native Client (`nacl`) dropped
+  - Replaced by WebAssembly (`js/wasm`)
+- Verifies consistency between `go.mod` and `vendor/modules.txt`
+- Uses `vendor` by default (`-mod vendor`)
+- Performance improvements
+  - Near-zero overhead of `defer`
+- Removed support for `SSLv3` (broken)
+
+## Go 1.15
+
+- Performance improvements
+  - Faster linker (20% faster; 30% less memory)
+  - Faster allocation of small objects on high core count
+  - Smaller binaries (around 5% reduction)
+  - No allocation when converting small integer values to `interface{}`
+- Deprecation of `X.509 Common Name` in favour of `Subject Alternative Names`
+- Requires MacOS 10.12 (Sierra) or higher
+  - Drops support for 32-bit binaries on darwin
+
+## Go 1.16
+
+- Modules are enabled by default
+- Support for file embedding (`//go:embed`)
+- Introduces new filesystem API (`io/fs`)
+- Deprecates `io/ioutil` package
+- Performance improvements
+  - Faster linker (20-25% faster; 5-15% less memory)
+  - Releases memory more promptly
+  - Better inlining of functions
+- Support for ARM-64 on various platforms
+
+## Go 1.17
+
+- Adds slice to array conversion
+- Introduces `//go:build` which is to replace `// +build`
+- Uses pruned module graphs when selecting dependency versions
+  - Lazy loading of `go.mod` files of dependencies
+- Adds helper functions to `unsafe`
+- Performance improvements
+  - Uses registers instead of stack (%5 faster)
+  - Better inlining of functions
+- Requires MacOS 10.13 High Sierra or higher
+
+## Go 1.18: Overview
+
+- Adds Generics
+- Adds Fuzz tests (`go test -fuzz`)
+- Adds Go workspaces (`go.work`)
+- New `any` alias for `interface{}`
+- Build and VCS information embedded into executable
+- Performance improvements
+  - Releases memory to OS more aggressively
+  - Faster linker (however, offset by slower compilation)
+  - Better inlining of functions
+- Requires Linux kernel 2.6.32 or higher
+- Requires iOS 12 or higher
+
+## Go 1.18: Package changes
+
+- Introduces new `net/netip` package
+  - `Addr` type represents IP4/IP6 address
+  - `AddrPort` type represents an IP-port combo
+  - `Prefix` type represents a CIDR (e.g. `192.168.0.1/24`)
+- Adds new `bytes.Cut` and `strings.Cut` helper functions
+- Deprecates `Temporary` method on `net.Error` interface
+- Adds new `TryLock` method to `sync.Mutex`
+- Adds new `TryLock` and `TryRLock` to `sync.RWMutex`
+
+## Go 1.18: A quick look at Fuzz Tests
+
+.code snippets/fuzz_test.go.txt /START1 OMIT/,/END1 OMIT/
+.code snippets/fuzz_test.go.txt /START2 OMIT/,/END2 OMIT/
+
+## Go 1.18: A quick look at Go Workspaces
+
+.image screenshots/workspace.png 400 _
+
+## Onto Generics
+
+<br>
+<br>
+
+[Slides](/generics.slide)

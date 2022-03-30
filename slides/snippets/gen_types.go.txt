@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+	"math"
+
+	"golang.org/x/exp/constraints"
+)
+
+type Numeric interface {
+	constraints.Integer | constraints.Float
+}
+
+// START OMIT
+
+type Point2D[T Numeric] struct {
+	X T
+	Y T
+}
+
+func Distance[T Numeric](p1, p2 Point2D[T]) float64 {
+	dX := p2.X - p1.X
+	dY := p2.Y - p1.Y
+	return math.Sqrt(float64(dX*dX + dY*dY))
+}
+
+func main() {
+	a := Point2D[int]{
+		X: 10,
+		Y: 5,
+	}
+	b := Point2D[int]{
+		X: 50,
+		Y: 20,
+	}
+	fmt.Printf("Distance: %.2f", Distance(a, b))
+}
+
+// END OMIT

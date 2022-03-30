@@ -1,0 +1,10 @@
+package main
+
+// START OMIT
+
+type Custom[T any] T
+
+// END OMIT
+
+func main() {
+}

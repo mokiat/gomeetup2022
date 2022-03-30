@@ -1,0 +1,39 @@
+package snippets
+
+// START OMIT
+
+func MinInt(a, b int) int { // HL
+	// ...
+	if a < b { // OMIT
+		return a // OMIT
+	} // OMIT
+	return b // OMIT
+}
+
+func MinFloat32(a, b float32) float32 { // HL
+	// ...
+	if a < b { // OMIT
+		return a // OMIT
+	} // OMIT
+	return b // OMIT
+}
+
+func AbsInt(value int) int { // HL
+	// ...
+	if value < 0 { // OMIT
+		return -value // OMIT
+	} // OMIT
+	return value // OMIT
+}
+
+func AbsFloat32(value float32) float32 { // HL
+	// ...
+	if value < 0 { // OMIT
+		return -value // OMIT
+	} // OMIT
+	return value // OMIT
+}
+
+// ...
+
+// END OMIT

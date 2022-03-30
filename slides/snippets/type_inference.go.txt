@@ -1,0 +1,24 @@
+package main
+
+import (
+	"fmt"
+)
+
+// START OMIT
+
+func ptrOf[T any](value T) *T { // HL
+	return &value
+}
+
+func main() {
+	data := struct {
+		Name *string
+		Age  *int
+	}{
+		Name: ptrOf("John Doe"), // HL
+		Age:  ptrOf(32),         // HL
+	}
+	fmt.Printf("%+v\n", data)
+}
+
+// END OMIT

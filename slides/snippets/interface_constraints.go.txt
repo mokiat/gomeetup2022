@@ -1,0 +1,27 @@
+package main
+
+import (
+	"bytes"
+	"fmt"
+)
+
+// START OMIT
+
+type Writer interface {
+	WriteString(string) (int, error)
+	WriteRune(rune) (int, error)
+}
+
+func Print[T Writer](w T) {
+	w.WriteRune('G')
+	w.WriteRune('o')
+	w.WriteString(" - the best language ever!\n")
+}
+
+func main() {
+	buf := &bytes.Buffer{}
+	Print(buf)
+	fmt.Println(buf.String())
+}
+
+// END OMIT

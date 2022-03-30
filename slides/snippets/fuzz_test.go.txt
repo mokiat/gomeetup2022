@@ -1,0 +1,30 @@
+package fuzztest_test
+
+import "testing"
+
+// START1 OMIT
+
+func Min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+// END1 OMIT
+
+// START2 OMIT
+
+func FuzzMin(f *testing.F) {
+	f.Add(0, 0)
+	f.Add(13, 1)
+	f.Add(-1, -5)
+	f.Fuzz(func(t *testing.T, a, b int) {
+		result := Min(a, b)
+		if result > a || result > b || (result != a && result != b) {
+			t.Errorf("%d is not the minimum of %d and %d", result, a, b)
+		}
+	})
+}
+
+// END2 OMIT

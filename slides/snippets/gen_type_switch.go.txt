@@ -1,0 +1,25 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+// START OMIT
+
+func MaxValue[T uint32 | uint64]() T {
+	switch T {
+	case uint32:
+		return math.MaxUint32
+	case uint64:
+		return math.MaxUint64
+	default:
+		return 0
+	}
+}
+
+func main() {
+	fmt.Println(MaxValue[uint32]())
+}
+
+// END OMIT

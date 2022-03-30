@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+func min[T any](a, b T) T {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func main() {
+	fmt.Println(min(32, 15))
+	fmt.Println(min(1.5, 4.3))
+}
+
+// END OMIT

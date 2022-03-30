@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+import "golang.org/x/exp/slices"
+
+
+func main() {
+	ints := []int{5, 13, 25, 119}
+
+	fmt.Printf("%d -> %d\n", 5, slices.Index(ints, 5))
+	fmt.Printf("%d -> %d\n", 55, slices.Index(ints, 55))
+	fmt.Printf("%d -> %d\n", 25, slices.Index(ints, 25))
+}
+
+// END OMIT

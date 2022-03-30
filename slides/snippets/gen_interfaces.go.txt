@@ -1,0 +1,26 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+type Converter[S, T any] interface { // HL
+	Convert(s S) T // HL
+}
+
+func PrintFloat32[S any](converter Converter[S, float32], v S) { // HL
+	fmt.Printf("Value: %.2f\n", converter.Convert(v))
+}
+
+type IntFloat32Converter struct{}
+
+func (c IntFloat32Converter) Convert(v int) float32 {
+	return float32(v) / 100.0
+}
+
+func main() {
+	c := IntFloat32Converter{}
+	PrintFloat32[int](c, 132) // HL
+}
+
+// END OMIT

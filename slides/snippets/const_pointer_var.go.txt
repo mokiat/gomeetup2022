@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+func main() {
+	name := "John Doe" // HL
+	age := 32          // HL
+
+	data := struct {
+		Name *string
+		Age  *int
+	}{
+		Name: &name, // HL
+		Age:  &age,  // HL
+	}
+	fmt.Printf("%+v\n", data)
+}
+
+// END OMIT

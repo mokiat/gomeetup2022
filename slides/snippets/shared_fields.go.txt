@@ -1,0 +1,25 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+type A struct {
+	Value int // HL
+}
+
+type B struct {
+	Value int // HL
+}
+
+func Do[T A | B](entity T) {
+	fmt.Printf("Entity value: %d\n", entity.Value) // HL
+}
+
+func main() {
+	Do(A{
+		Value: 10,
+	})
+}
+
+// END OMIT

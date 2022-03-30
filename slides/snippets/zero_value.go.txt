@@ -1,0 +1,22 @@
+package main
+
+import (
+	"fmt"
+)
+
+// START1 OMIT
+
+func MakeDefault[T any]() T {
+	return *new(T) // HL
+}
+
+// END1 OMIT
+
+// START2 OMIT
+
+func MakeDefault[T any]() T {
+    var v T  // HL
+	return v // HL
+}
+
+// END2 OMIT

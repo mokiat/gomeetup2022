@@ -1,0 +1,31 @@
+package main
+
+import (
+	"fmt"
+
+	"golang.org/x/exp/constraints"
+)
+
+// START OMIT
+
+func min[T constraints.Ordered](a, b T) T { // HL
+	if a < b {
+		return a
+	}
+	return b
+}
+
+var (
+	minInt    func(a, b int) int       // HL
+	minString func(a, b string) string // HL
+)
+
+func main() {
+	minInt = min[int]
+	minString = min[string]
+
+	fmt.Println(minInt(32, 15))
+	fmt.Println(minString("zyx", "abc")) // HL
+}
+
+// END OMIT

@@ -1,0 +1,26 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+type StringInt interface {
+	~int
+	String() string
+}
+
+type MyInt int
+
+func (i MyInt) String() string {
+	return fmt.Sprintf("this number is %d", i)
+}
+
+func Print[T StringInt](v T) {
+	fmt.Printf("%T - %s\n", v, v.String())
+}
+
+func main() {
+	Print(MyInt(13))
+}
+
+// END OMIT

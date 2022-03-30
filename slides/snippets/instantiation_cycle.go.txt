@@ -1,0 +1,20 @@
+package main
+
+// START OMIT
+
+type Box[A any] struct {
+	value A
+}
+
+func Wrap[A any](parent A) any {
+	sub := Box[A]{
+		value: parent,
+	}
+	return Wrap[Box[A]](sub)
+}
+
+func main() {
+	Wrap(Box[int]{10})
+}
+
+// END OMIT

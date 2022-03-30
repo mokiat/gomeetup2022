@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+type PtrType[T any] interface {
+	*T
+}
+
+func Do[A PtrType[int]](v A) {
+	fmt.Printf("%T\n", v)
+}
+
+func main() {
+	b := 10
+	a := &b
+	Do(a)
+}
+
+// END OMIT

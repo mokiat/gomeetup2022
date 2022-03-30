@@ -1,0 +1,12 @@
+package main
+
+// START OMIT
+
+type Node[T any] struct {
+	value *Node[*T] // HL
+}
+
+// END OMIT
+
+func main() {
+}

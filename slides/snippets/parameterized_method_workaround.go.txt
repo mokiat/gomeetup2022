@@ -1,0 +1,29 @@
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+)
+
+// START OMIT
+
+type Buffer []byte
+
+func FromJSON[T any](b Buffer) T {
+	var result T
+	_ = json.NewDecoder(bytes.NewReader(b)).Decode(&result)
+	return result
+}
+
+type Person struct {
+	Name string `json:"name"`
+}
+
+func main() {
+	buf := Buffer([]byte(`{"name": "John"}`))
+	person := FromJSON[Person](buf)
+	fmt.Printf("Person: %+v\n", person)
+}
+
+// END OMIT

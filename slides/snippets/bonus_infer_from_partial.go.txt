@@ -1,0 +1,16 @@
+package main
+
+import "fmt"
+
+// START OMIT
+
+func Make[T any, K *T]() K {
+	var v T
+	return &v
+}
+
+func main() {
+	fmt.Println(Make[int]())
+}
+
+// END OMIT
